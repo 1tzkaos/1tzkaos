@@ -8,7 +8,10 @@
   <img alt="Stack: rust, clickhouse, nats, grpc, typescript, solana" src="assets/stack-light.svg" width="582">
 </picture>
 
-## Dexploit
+<h2>
+  <img src="assets/dexploit-logo.png" alt="" width="26" height="26">
+  &nbsp;Dexploit
+</h2>
 
 > **Skip the data pipeline. Ship your Solana app.**
 
@@ -19,7 +22,7 @@ Pre-parsed OHLCV candles, swap events, and price streams across Solana DEXs, ser
 <!-- STATS:START -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Dexploit live stats: candles stored 965M, trading pairs 4M, dex protocols 10, latest candle 14:08 UTC. Updated 2026-08-18" src="assets/stats-light.svg" width="100%">
+  <img alt="Dexploit live stats: candles stored 968M, trading pairs 4M, dex protocols 10, latest candle 22:35 UTC. Updated 2026-08-18" src="assets/stats-light.svg" width="100%">
 </picture>
 <!-- STATS:END -->
 
@@ -42,6 +45,7 @@ A paper-trading simulator running several strategy configurations in parallel la
 ## Recently
 
 <!-- ACTIVITY:START -->
+- opened a PR in [`1tzkaos/PoGoBot`](https://github.com/1tzkaos/PoGoBot)
 - pushed to [`1tzkaos/1tzkaos`](https://github.com/1tzkaos/1tzkaos)
 - opened a PR in [`1tzkaos/docs`](https://github.com/1tzkaos/docs)
 - opened a PR in [`DexploitV1/Dexploit-MCP`](https://github.com/DexploitV1/Dexploit-MCP)
