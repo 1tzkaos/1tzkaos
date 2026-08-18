@@ -29,7 +29,7 @@ test('updateReadme fills both regions and reports a change', async () => {
   assert.match(out, /alt="Dexploit live stats:/)
   assert.match(out, /pushed to/)
 })
-test('updateReadme is idempotent — a second identical run reports no change', async () => {
+test('updateReadme is idempotent: a second identical run reports no change', async () => {
   const { readmePath: path, assetsDir } = await scratch()
   await updateReadme({ readmePath: path, assetsDir, stats: STATS, events: EVENTS, now: NOW })
   const first = await readFile(path, 'utf8')
@@ -60,4 +60,12 @@ test('updateReadme writes no card when rendering throws', async () => {
   const { readmePath, assetsDir } = await scratch()
   await assert.rejects(() => updateReadme({ readmePath, assetsDir, stats: {}, events: EVENTS, now: NOW }))
   assert.deepEqual(await readdir(assetsDir), [])
+})
+
+test('the published README carries no em dashes', async () => {
+  const published = await readFile(new URL('../README.md', import.meta.url), 'utf8')
+  const offenders = published.split('\n')
+    .map((line, i) => [i + 1, line])
+    .filter(([, line]) => line.includes('—'))
+  assert.deepEqual(offenders, [], `em dash on line(s): ${offenders.map(([n]) => n).join(', ')}`)
 })

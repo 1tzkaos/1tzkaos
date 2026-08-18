@@ -10,7 +10,7 @@ test('statsCells abbreviates each figure', () => {
   assert.deepEqual(cells.map((c) => c.value), ['963M', '4M', '10', '10:08 UTC'])
 })
 test('statsCells falls back when newest_candle is absent', () => {
-  assert.equal(statsCells({ ...STATS, newest_candle: null })[3].value, '—')
+  assert.equal(statsCells({ ...STATS, newest_candle: null })[3].value, 'n/a')
 })
 test('statsCells rejects a missing numeric field', () => {
   assert.throws(() => statsCells({ ...STATS, pairs: undefined }), /pairs/)
@@ -41,16 +41,12 @@ test('renderStatsSvg keeps the aria-label attribute well formed', () => {
   assert.match(label[1], /^Dexploit live stats:/)
 })
 
-test('renderStatsSvg escapes markup smuggled in through a timestamp', () => {
-  const cell = renderStatsSvg(
-    { ...STATS, newest_candle: '2026-08-18T10:08:00Z' }, NOW, 'dark')
-  assert.ok(!cell.includes('<text><script'))
-  // An em dash is the only non-ASCII value the cells can produce; it must survive.
-  const dashed = renderStatsSvg({ ...STATS, newest_candle: null }, NOW, 'dark')
-  assert.ok(dashed.includes('\u2014'))
+test('renderStatsSvg never emits an em dash', () => {
+  assert.ok(!renderStatsSvg(STATS, NOW, 'dark').includes('\u2014'))
+  assert.ok(!renderStatsSvg({ ...STATS, newest_candle: null }, NOW, 'light').includes('\u2014'))
 })
 test('statsAltText states the numbers in words', () => {
   const alt = statsAltText(STATS, NOW)
   assert.match(alt, /candles stored 963M/)
-  assert.match(alt, /updated 2026-08-18/)
+  assert.match(alt, /Updated 2026-08-18/)
 })

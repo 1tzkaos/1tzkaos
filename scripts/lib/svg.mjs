@@ -30,7 +30,7 @@ export function statsCells(stats) {
     { label: 'DEX PROTOCOLS', value: compactNumber(stats.protocols) },
     {
       label: 'LATEST CANDLE',
-      value: stats.newest_candle ? utcMinuteStamp(stats.newest_candle).slice(11) : '—',
+      value: stats.newest_candle ? utcMinuteStamp(stats.newest_candle).slice(11) : 'n/a',
     },
   ]
 }
@@ -70,5 +70,5 @@ ${parts.join('\n')}
 export function statsAltText(stats, now) {
   const cells = statsCells(stats)
   const summary = cells.map((c) => `${c.label.toLowerCase()} ${c.value}`).join(', ')
-  return `Dexploit live stats: ${summary} — updated ${utcDateStamp(now)}`
+  return `Dexploit live stats: ${summary}. Updated ${utcDateStamp(now)}`
 }

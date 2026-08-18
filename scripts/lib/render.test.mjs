@@ -18,7 +18,7 @@ test('renderStatsBlock emits a theme-aware picture element', () => {
 test('renderStatsBlock carries the figures in alt text so they survive a stale image', () => {
   const out = renderStatsBlock(STATS, NOW)
   assert.match(out, /alt="Dexploit live stats: candles stored 146M/)
-  assert.match(out, /updated 2026-08-18/)
+  assert.match(out, /Updated 2026-08-18/)
 })
 
 test('renderStatsBlock refuses to render a missing numeric field', () => {
