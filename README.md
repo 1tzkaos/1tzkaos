@@ -8,7 +8,9 @@
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="#also-building"><b>Projects</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://dexploit.dev"><b>Live site</b></a>
+  <a href="#site"><b>Site</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://dexploit.dev"><b>Dexploit.dev</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="https://www.linkedin.com/in/nbstanki/"><b>Contact</b></a>
 </p>
@@ -27,7 +29,7 @@ Pre-parsed OHLCV candles, swap events, and price streams across Solana DEXs, ser
 <!-- STATS:START -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Dexploit live stats: candles stored 967M, trading pairs 4M, dex protocols 10, latest candle 22:43 UTC. Updated 2026-08-18" src="assets/stats-light.svg" width="100%">
+  <img alt="Dexploit live stats: candles stored 967M, trading pairs 4M, dex protocols 10, latest candle 23:22 UTC. Updated 2026-08-18" src="assets/stats-light.svg" width="100%">
 </picture>
 <!-- STATS:END -->
 
@@ -81,6 +83,14 @@ A paper-trading simulator running several strategy configurations in parallel la
 </td>
 </tr>
 </table>
+
+<h2 id="site">Site</h2>
+
+<a href="https://1tzkaos.github.io/"><b>1tzkaos.github.io</b></a> reads the same API this profile does, live in the browser: the counters tick and the clock runs while you watch. This preview is recaptured daily by a scheduled Playwright job, so it shows the real page rather than a mockup.
+
+<a href="https://1tzkaos.github.io/">
+  <img src="assets/site-preview.png" alt="Preview of 1tzkaos.github.io showing live Solana market-data counters" width="100%">
+</a>
 
 ## Recently
 
