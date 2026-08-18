@@ -1,4 +1,5 @@
-import { compactNumber, utcDateStamp, utcMinuteStamp } from './format.mjs'
+import { utcDateStamp } from './format.mjs'
+import { statsAltText } from './svg.mjs'
 
 const VERBS = {
   PushEvent: 'pushed to',
@@ -8,19 +9,13 @@ const VERBS = {
   ReleaseEvent: 'released',
 }
 
-export function renderStats(stats, now) {
-  for (const field of ['total_candles', 'protocols', 'pairs']) {
-    if (typeof stats?.[field] !== 'number') {
-      throw new TypeError(`renderStats: missing numeric field "${field}"`)
-    }
-  }
-  const latest = stats.newest_candle ? `\`${utcMinuteStamp(stats.newest_candle)}\`` : '—'
+export function renderStatsBlock(stats, now) {
+  const alt = statsAltText(stats, now).replace(/"/g, '&quot;')
   return [
-    '| Candles stored | Trading pairs | DEX protocols | Latest candle |',
-    '|---|---|---|---|',
-    `| **${compactNumber(stats.total_candles)}** | **${compactNumber(stats.pairs)}** | **${compactNumber(stats.protocols)}** | ${latest} |`,
-    '',
-    `<sub>Live from \`api.dexploit.dev\` · updated ${utcDateStamp(now)}</sub>`,
+    '<picture>',
+    '  <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">',
+    `  <img alt="${alt}" src="assets/stats-light.svg" width="100%">`,
+    '</picture>',
   ].join('\n')
 }
 

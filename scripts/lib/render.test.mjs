@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { renderStats, renderActivity } from './render.mjs'
+import { renderStatsBlock, renderActivity } from './render.mjs'
 
 const NOW = new Date('2026-08-18T12:00:00Z')
 const STATS = {
@@ -9,24 +9,22 @@ const STATS = {
   oldest_candle: '2025-01-01T00:00:00Z', newest_candle: '2026-08-18T11:58:00Z',
 }
 
-test('renderStats renders every headline figure', () => {
-  const out = renderStats(STATS, NOW)
-  assert.match(out, /146M/)
-  assert.match(out, /1\.2M/)
-  assert.match(out, /\b7\b/)
-  assert.match(out, /2026-08-18 11:58 UTC/)
+test('renderStatsBlock emits a theme-aware picture element', () => {
+  const out = renderStatsBlock(STATS, NOW)
+  assert.match(out, /<source media="\(prefers-color-scheme: dark\)" srcset="assets\/stats-dark\.svg">/)
+  assert.match(out, /src="assets\/stats-light\.svg"/)
 })
-test('renderStats stamps the update date', () => {
-  assert.match(renderStats(STATS, NOW), /updated 2026-08-18/)
+
+test('renderStatsBlock carries the figures in alt text so they survive a stale image', () => {
+  const out = renderStatsBlock(STATS, NOW)
+  assert.match(out, /alt="Dexploit live stats: candles stored 146M/)
+  assert.match(out, /updated 2026-08-18/)
 })
-test('renderStats degrades when newest_candle is absent', () => {
-  const out = renderStats({ ...STATS, newest_candle: null }, NOW)
-  assert.match(out, /146M/)
-  assert.doesNotMatch(out, /UTC/)
+
+test('renderStatsBlock refuses to render a missing numeric field', () => {
+  assert.throws(() => renderStatsBlock({ ...STATS, total_candles: undefined }, NOW), /total_candles/)
 })
-test('renderStats refuses to render a missing numeric field', () => {
-  assert.throws(() => renderStats({ ...STATS, total_candles: undefined }, NOW), /total_candles/)
-})
+
 test('renderActivity lists each repo once, newest first', () => {
   const events = [
     { type: 'PushEvent', repo: { name: 'DexploitV1/Dexploit-MCP' } },
