@@ -3,10 +3,11 @@ import { compactNumber, utcDateStamp, utcMinuteStamp } from './format.mjs'
 const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace"
 const SANS = "ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
 
-// Dexploit's own tokens, from Dexploit-Website/tailwind.config.ts
+// Monochrome, matching 1tzkaos.github.io. `mint` is retained as the accent
+// slot name; it now carries the ink colour rather than a hue.
 export const THEMES = {
-  dark:  { bg: '#0D1117', card: '#161B22', border: '#30363D', ink: '#F0F6FC', dim: '#8B949E', faint: '#6E7781', mint: '#00FFC2' },
-  light: { bg: '#FFFFFF', card: '#F6F8FA', border: '#D0D7DE', ink: '#0D1117', dim: '#57606A', faint: '#8C959F', mint: '#00A37E' },
+  dark:  { bg: '#050505', card: '#0C0C0C', border: '#242424', ink: '#FFFFFF', dim: '#A1A1AA', faint: '#888888', mint: '#FFFFFF' },
+  light: { bg: '#FFFFFF', card: '#FAFAFA', border: '#E4E4E4', ink: '#050505', dim: '#575757', faint: '#8A8A8A', mint: '#050505' },
 }
 
 const CELL_X = [64, 332, 600, 868]

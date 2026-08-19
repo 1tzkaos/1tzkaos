@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 210" width="1200" height="210" role="img" aria-label="Dexploit live stats: candles stored 967M, trading pairs 4M, dex protocols 10, latest candle 23:22 UTC. Updated 2026-08-18">
-<rect width="1200" height="210" rx="10" fill="#F6F8FA"/>
-<rect x="0.5" y="0.5" width="1199" height="209" rx="9.5" fill="none" stroke="#D0D7DE"/>
-<rect x="64" y="56" width="7" height="7" fill="#00A37E"/>
-<text x="82" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#57606A">CANDLES STORED</text>
-<text x="64" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#0D1117">967M</text>
-<rect x="332" y="56" width="7" height="7" fill="#00A37E"/>
-<text x="350" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#57606A">TRADING PAIRS</text>
-<text x="332" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#0D1117">4M</text>
-<rect x="600" y="56" width="7" height="7" fill="#00A37E"/>
-<text x="618" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#57606A">DEX PROTOCOLS</text>
-<text x="600" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#0D1117">10</text>
-<rect x="868" y="56" width="7" height="7" fill="#00A37E"/>
-<text x="886" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#57606A">LATEST CANDLE</text>
-<text x="868" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#0D1117">23:22 UTC</text>
-<rect x="316" y="46" width="1" height="96" fill="#D0D7DE"/>
-<rect x="584" y="46" width="1" height="96" fill="#D0D7DE"/>
-<rect x="852" y="46" width="1" height="96" fill="#D0D7DE"/>
-<text x="64" y="176" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" fill="#8C959F">live from api.dexploit.dev &#183; updated 2026-08-18</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 210" width="1200" height="210" role="img" aria-label="Dexploit live stats: candles stored 970M, trading pairs 4M, dex protocols 10, latest candle 06:22 UTC. Updated 2026-08-19">
+<rect width="1200" height="210" rx="10" fill="#FAFAFA"/>
+<rect x="0.5" y="0.5" width="1199" height="209" rx="9.5" fill="none" stroke="#E4E4E4"/>
+<rect x="64" y="56" width="7" height="7" fill="#050505"/>
+<text x="82" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#575757">CANDLES STORED</text>
+<text x="64" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#050505">970M</text>
+<rect x="332" y="56" width="7" height="7" fill="#050505"/>
+<text x="350" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#575757">TRADING PAIRS</text>
+<text x="332" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#050505">4M</text>
+<rect x="600" y="56" width="7" height="7" fill="#050505"/>
+<text x="618" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#575757">DEX PROTOCOLS</text>
+<text x="600" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#050505">10</text>
+<rect x="868" y="56" width="7" height="7" fill="#050505"/>
+<text x="886" y="63" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.6" fill="#575757">LATEST CANDLE</text>
+<text x="868" y="126" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="42" font-weight="600" letter-spacing="-1" fill="#050505">06:22 UTC</text>
+<rect x="316" y="46" width="1" height="96" fill="#E4E4E4"/>
+<rect x="584" y="46" width="1" height="96" fill="#E4E4E4"/>
+<rect x="852" y="46" width="1" height="96" fill="#E4E4E4"/>
+<text x="64" y="176" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" fill="#8A8A8A">live from api.dexploit.dev &#183; updated 2026-08-19</text>
 </svg>
