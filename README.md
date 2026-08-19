@@ -75,8 +75,6 @@ REST terminates behind Cloudflare. WebSocket and gRPC run direct to the edge, wh
 
 ## Site
 
-[**1tzkaos.github.io**](https://1tzkaos.github.io/) reads the same API this profile does, live in the browser. This preview is recaptured daily by a scheduled Playwright job, so it shows the real page rather than a mockup.
-
 <a href="https://1tzkaos.github.io/">
   <img src="assets/site-preview.png" alt="Preview of 1tzkaos.github.io" width="100%">
 </a>
