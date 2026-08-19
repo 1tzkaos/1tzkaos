@@ -1,53 +1,45 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
-  <img alt="Nick Stankiewicz builds market-data infrastructure" src="assets/header-light.svg" width="100%">
+  <img alt="Nick Stankiewicz, Solana market-data infrastructure" src="assets/header-light.svg" width="100%">
 </picture>
 
-Mostly Solana, in Rust. Ingest pipelines that parse swaps out of on-chain program data, time-series storage holding close to a billion candles, and the APIs that serve it. Lately also trading systems that consume the feeds I build.
+<p align="center">
+  <a href="#dexploit"><b>Dexploit</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="#also-building"><b>Projects</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="#site"><b>Site</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://dexploit.dev"><b>Dexploit.dev</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/nbstanki/"><b>Contact</b></a>
+</p>
 
-<a href="https://1tzkaos.github.io/"><b>1tzkaos.github.io</b></a>
-&nbsp;·&nbsp; <a href="https://dexploit.dev">dexploit.dev</a>
-&nbsp;·&nbsp; <a href="https://www.linkedin.com/in/nbstanki/">LinkedIn</a>
-&nbsp;·&nbsp; <a href="mailto:nbstanki@mtu.edu">nbstanki@mtu.edu</a>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.png">
-  <img alt="Solana, Raydium, Orca, Pump.fun, Meteora, Rust, ClickHouse, NATS, TypeScript, Python, Prometheus, Next.js" src="assets/stack-light.png" width="100%">
-</picture>
-
-## Dexploit
+<h2 id="dexploit">
+  <img src="assets/dexploit-logo.png" alt="" width="26" height="26">
+  &nbsp;Dexploit
+</h2>
 
 > **Skip the data pipeline. Ship your Solana app.**
 
-Pre-parsed OHLCV candles, swap events and price streams across every major Solana DEX, over REST, WebSocket, gRPC and GraphQL. Rust services parse swaps out of on-chain program data and aggregate candles into ClickHouse; NATS moves events between the protocol workers and the gateway.
+Pre-parsed OHLCV candles, swap events, and price streams across Solana DEXs, served over REST, WebSocket, gRPC, and GraphQL, with a free tier instead of an enterprise contract.
 
-[**dexploit.dev**](https://dexploit.dev) &nbsp;·&nbsp; [docs](https://docs.dexploit.dev) &nbsp;·&nbsp; [npm](https://www.npmjs.com/package/@dexploit/mcp) &nbsp;·&nbsp; [DexploitV1](https://github.com/DexploitV1)
+[**dexploit.dev**](https://dexploit.dev) &nbsp;·&nbsp; [docs](https://docs.dexploit.dev) &nbsp;·&nbsp; [npm](https://www.npmjs.com/package/@dexploit/mcp) &nbsp;·&nbsp; [github.com/DexploitV1](https://github.com/DexploitV1)
 
 <!-- STATS:START -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Dexploit live stats: candles stored 970M, trading pairs 4M, dex protocols 10, latest candle 06:22 UTC. Updated 2026-08-19" src="assets/stats-light.svg" width="100%">
+  <img alt="Dexploit live stats: candles stored 970M, trading pairs 4M, dex protocols 10, latest candle 06:36 UTC. Updated 2026-08-19" src="assets/stats-light.svg" width="100%">
 </picture>
 <!-- STATS:END -->
 
-> [!NOTE]
-> **[Dexploit-MCP](https://github.com/DexploitV1/Dexploit-MCP)** wires the API into Claude Code, Claude Desktop and Cursor, so a model queries real Solana data instead of inventing it.
-> ```
-> npx -y @dexploit/mcp
-> ```
-
-## Work
-
-| | Project | Stack | What it is |
-|---|---|---|---|
-| `DX-01` | **[Dexploit](https://dexploit.dev)** | Rust, ClickHouse, NATS, gRPC | Solana market-data API. Built and operate. |
-| `DX-02` | **[Dexploit-MCP](https://github.com/DexploitV1/Dexploit-MCP)** | TypeScript, MCP | Live API access for Claude Code, Claude Desktop and Cursor. |
-| `PB-03` | **[PoGoBot](https://github.com/1tzkaos/PoGoBot)** | Python, YOLOv8, OpenCV | Screen-reading automation in three separately testable layers. |
-| `SB-04` | **solbot** *(private)* | Rust, XGBoost, Python | Graduate selector on a gradient-boosted classifier, inside a market-making engine. |
-| `HL-05` | **hyperliquid-bot** *(private)* | Rust, Hyperliquid | Trailing z-score mean reversion on perpetuals. |
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
+  <img alt="Stack: rust, clickhouse, nats, grpc, typescript, solana" src="assets/stack-light.svg" width="582">
+</picture>
 
 <details>
-<summary><b>How Dexploit fits together</b></summary>
+<summary><b>How it fits together</b></summary>
 <br>
 
 Rust services parse swaps out of on-chain program data, normalize them through a shared pipeline, and aggregate candles into ClickHouse. NATS moves events between the protocol workers and the gateway. Prometheus covers metrics.
@@ -63,20 +55,39 @@ REST terminates behind Cloudflare. WebSocket and gRPC run direct to the edge, wh
 
 </details>
 
-<details>
-<summary><b>solbot and hyperliquid-bot, in more detail</b></summary>
-<br>
+> [!NOTE]
+> **[Dexploit-MCP](https://github.com/DexploitV1/Dexploit-MCP)** wires the API into Claude Code, Claude Desktop, and Cursor, so a model queries real Solana data instead of inventing it.
+> ```
+> npx -y @dexploit/mcp
+> ```
 
-**solbot** is a pump.fun graduate selector built on a gradient-boosted classifier. A long-lived Python sidecar scores each mint from its live swap stream and returns a probability; Rust distils the same tree model so the hot path never waits on Python. Two feature sets run side by side in a zero-capital A/B, and scoring fails closed: any error means the mint is never managed. Around it sits a market-making engine with self-impact modelling, depth gates and realizable-drawdown stops.
+## Also building
 
-**hyperliquid-bot** is a mean-reversion strategy for Hyperliquid perpetuals. Entries come from a trailing z-score of bar closes against the preceding window, floored so a near-constant window cannot manufacture a spurious extreme, plus a move-speed term on the premise that fast spikes do not revert and slow grinds do. A forward-test analyser reads the trade journal back and scores realization ratio with bias detection.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-</details>
+**[PoGoBot](https://github.com/1tzkaos/PoGoBot)**<br>
+`python` &nbsp;`computer-vision`
 
-## Site
+Screen-reading game automation in three separately testable layers: perception, decision, actuation. The state machine refuses to start if any state is missing a handler or a timeout.
+
+</td>
+<td width="50%" valign="top">
+
+**solbot**<br>
+`private` &nbsp;`typescript`
+
+A paper-trading simulator running several strategy configurations in parallel lanes off one shared market feed, so parameter sets are compared against identical ticks. Built against the Dexploit API.
+
+</td>
+</tr>
+</table>
+
+<h2 id="site">Site</h2>
 
 <a href="https://1tzkaos.github.io/">
-  <img src="assets/site-preview.png" alt="Preview of 1tzkaos.github.io" width="100%">
+  <img src="assets/site-preview.png" alt="Preview of 1tzkaos.github.io showing live Solana market-data counters" width="100%">
 </a>
 
 ## Recently
@@ -93,4 +104,4 @@ REST terminates behind Cloudflare. WebSocket and gRPC run direct to the edge, wh
 
 ---
 
-<sub>Minneapolis, MN &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/nbstanki/">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:nbstanki@mtu.edu">nbstanki@mtu.edu</a></sub>
+<sub><a href="https://www.linkedin.com/in/nbstanki/">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:nbstanki@mtu.edu">nbstanki@mtu.edu</a></sub>

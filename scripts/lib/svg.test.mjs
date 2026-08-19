@@ -20,23 +20,10 @@ test('renderStatsSvg is self-contained and sanitizer-safe', () => {
   assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)
   assert.doesNotMatch(svg, /<script|<style|href=|xlink:|<foreignObject/)
 })
-test('renderStatsSvg paints each theme from its own token set', () => {
-  const dark = renderStatsSvg(STATS, NOW, 'dark')
-  const light = renderStatsSvg(STATS, NOW, 'light')
-  assert.match(dark, new RegExp(THEMES.dark.card))
-  assert.match(dark, new RegExp(THEMES.dark.ink))
-  assert.match(light, new RegExp(THEMES.light.card))
-  assert.doesNotMatch(dark, new RegExp(THEMES.light.card))
-})
-
-test('the palette stays monochrome: no saturated hue survives', () => {
-  const svg = renderStatsSvg(STATS, NOW, 'dark') + renderStatsSvg(STATS, NOW, 'light')
-  for (const hex of svg.match(/#[0-9A-Fa-f]{6}/g) || []) {
-    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
-    // #A1A1AA, the supplied secondary-text token, is deliberately a touch cool
-    // (spread 9). Anything past ~12 would be an actual hue rather than a grey.
-    assert.ok(Math.max(r, g, b) - Math.min(r, g, b) <= 12, `${hex} is not neutral`)
-  }
+test('renderStatsSvg paints Dexploit tokens per theme', () => {
+  assert.match(renderStatsSvg(STATS, NOW, 'dark'), new RegExp(THEMES.dark.card))
+  assert.match(renderStatsSvg(STATS, NOW, 'dark'), /#00FFC2/)
+  assert.match(renderStatsSvg(STATS, NOW, 'light'), new RegExp(THEMES.light.card))
 })
 test('renderStatsSvg carries the figures and its own date stamp', () => {
   const svg = renderStatsSvg(STATS, NOW, 'dark')
