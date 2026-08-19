@@ -8,7 +8,7 @@
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="#also-building"><b>Projects</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="#site"><b>Site</b></a>
+  <a href="https://1tzkaos.github.io/"><b>1tzkaos.github.io</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="https://dexploit.dev"><b>Dexploit.dev</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
@@ -83,12 +83,6 @@ A paper-trading simulator running several strategy configurations in parallel la
 </td>
 </tr>
 </table>
-
-<h2 id="site">Site</h2>
-
-<a href="https://1tzkaos.github.io/">
-  <img src="assets/site-preview.png" alt="Preview of 1tzkaos.github.io showing live Solana market-data counters" width="100%">
-</a>
 
 ## Recently
 
