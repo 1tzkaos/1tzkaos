@@ -1,16 +1,29 @@
 import { compactNumber, utcDateStamp, utcMinuteStamp } from './format.mjs'
 
-const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace"
 const SANS = "ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
 
-// Dexploit's own tokens, from Dexploit-Website/tailwind.config.ts
+// Monochrome, matching 1tzkaos.github.io. No card, no border, no accent colour:
+// the readout there is bare cells divided by hairlines, which is what this
+// mirrors. Tokens are the site's own.
 export const THEMES = {
-  dark:  { bg: '#0D1117', card: '#161B22', border: '#30363D', ink: '#F0F6FC', dim: '#8B949E', faint: '#6E7781', mint: '#00FFC2' },
-  light: { bg: '#FFFFFF', card: '#F6F8FA', border: '#D0D7DE', ink: '#0D1117', dim: '#57606A', faint: '#8C959F', mint: '#00A37E' },
+  dark:  { bg: '#050505', ink: '#FFFFFF', dim: '#A1A1AA', faint: '#888888', rule: '#242424' },
+  light: { bg: '#FFFFFF', ink: '#050505', dim: '#575757', faint: '#8A8A8A', rule: '#E4E4E4' },
 }
 
-const CELL_X = [64, 332, 600, 868]
-const DIVIDER_X = [316, 584, 852]
+// Sentence captions above the figure, as on the site, rather than shouted
+// uppercase labels. Pre-split because SVG text does not wrap.
+const CAPTIONS = [
+  ['Candles held in ClickHouse', 'across every indexed pair'],
+  ['Distinct trading pairs', 'currently indexed'],
+  ['Token mints seen across', 'all protocols'],
+  ['DEX protocols parsed', 'on-chain'],
+]
+
+const W = 1200
+const H = 210
+const PAD = 30                       // the site has page padding; this is full-bleed
+const COL = (W - PAD * 2) / 4
+const CELL_X = [0, 1, 2, 3].map((i) => PAD + i * COL)
 
 function escapeXml(value) {
   return String(value).replace(/[&<>"']/g, (ch) => (
@@ -25,13 +38,10 @@ export function statsCells(stats) {
     }
   }
   return [
-    { label: 'CANDLES STORED', value: compactNumber(stats.total_candles) },
-    { label: 'TRADING PAIRS', value: compactNumber(stats.pairs) },
-    { label: 'DEX PROTOCOLS', value: compactNumber(stats.protocols) },
-    {
-      label: 'LATEST CANDLE',
-      value: stats.newest_candle ? utcMinuteStamp(stats.newest_candle).slice(11) : 'n/a',
-    },
+    { label: 'candles stored', value: compactNumber(stats.total_candles) },
+    { label: 'trading pairs', value: compactNumber(stats.pairs) },
+    { label: 'token mints', value: Number.isFinite(stats.mints) ? compactNumber(stats.mints) : 'n/a' },
+    { label: 'dex protocols', value: compactNumber(stats.protocols) },
   ]
 }
 
@@ -40,35 +50,32 @@ export function renderStatsSvg(stats, now, themeName) {
   if (!t) throw new TypeError(`renderStatsSvg: unknown theme "${themeName}"`)
   const cells = statsCells(stats)
 
-  const parts = [
-    `<rect width="1200" height="210" rx="10" fill="${t.card}"/>`,
-    `<rect x="0.5" y="0.5" width="1199" height="209" rx="9.5" fill="none" stroke="${t.border}"/>`,
-  ]
+  const parts = [`<rect width="${W}" height="${H}" fill="${t.bg}"/>`]
 
   cells.forEach((cell, i) => {
     const x = CELL_X[i]
+    if (i > 0) parts.push(`<rect x="${(x - 22).toFixed(1)}" y="6" width="1" height="132" fill="${t.rule}"/>`)
+    const [l1, l2] = CAPTIONS[i]
     parts.push(
-      `<rect x="${x}" y="56" width="7" height="7" fill="${t.mint}"/>`,
-      `<text x="${x + 18}" y="63" font-family="${MONO}" font-size="13" letter-spacing="1.6" fill="${t.dim}">${escapeXml(cell.label)}</text>`,
-      `<text x="${x}" y="126" font-family="${SANS}" font-size="42" font-weight="600" letter-spacing="-1" fill="${t.ink}">${escapeXml(cell.value)}</text>`,
+      `<text x="${x}" y="30" font-family="${SANS}" font-size="15" fill="${t.dim}">${escapeXml(l1)}</text>`,
+      `<text x="${x}" y="52" font-family="${SANS}" font-size="15" fill="${t.dim}">${escapeXml(l2)}</text>`,
+      `<text x="${x - 3}" y="126" font-family="${SANS}" font-size="46" font-weight="600" letter-spacing="-1.4" fill="${t.ink}">${escapeXml(cell.value)}</text>`,
     )
   })
 
-  DIVIDER_X.forEach((x) => parts.push(`<rect x="${x}" y="46" width="1" height="96" fill="${t.border}"/>`))
-
+  const latest = stats.newest_candle ? `Latest candle ${utcMinuteStamp(stats.newest_candle)}. ` : ''
   parts.push(
-    `<text x="64" y="176" font-family="${MONO}" font-size="13" fill="${t.faint}">live from api.dexploit.dev &#183; updated ${utcDateStamp(now)}</text>`,
+    `<text x="${PAD}" y="180" font-family="${SANS}" font-size="14" font-style="italic" fill="${t.faint}">` +
+    `${escapeXml(latest)}Snapshot from api.dexploit.dev, cached server-side. Last synced ${utcDateStamp(now)}.</text>`,
   )
 
-  const alt = statsAltText(stats, now)
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 210" width="1200" height="210" role="img" aria-label="${escapeXml(alt)}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${escapeXml(statsAltText(stats, now))}">
 ${parts.join('\n')}
 </svg>
 `
 }
 
 export function statsAltText(stats, now) {
-  const cells = statsCells(stats)
-  const summary = cells.map((c) => `${c.label.toLowerCase()} ${c.value}`).join(', ')
+  const summary = statsCells(stats).map((c) => `${c.label} ${c.value}`).join(', ')
   return `Dexploit live stats: ${summary}. Updated ${utcDateStamp(now)}`
 }
