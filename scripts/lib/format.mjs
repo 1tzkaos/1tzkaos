@@ -7,11 +7,13 @@ export function compactNumber(n) {
   if (n < 0) throw new RangeError(`compactNumber: expected a non-negative number, received ${n}`)
   if (n < 1000) return String(n)
   for (const [size, suffix] of UNITS) {
-    if (n >= size) {
-      const scaled = n / size
-      const text = scaled >= 100 ? scaled.toFixed(0) : scaled.toFixed(1)
-      return `${text.replace(/\.0$/, '')}${suffix}`
-    }
+    if (n < size) continue
+    const scaled = n / size
+    const text = scaled >= 100 ? scaled.toFixed(0) : scaled.toFixed(1)
+    // 999,999,999 scales to 999.999… in the M unit and rounds to "1000",
+    // which belongs one unit up: "1B", not "1000M".
+    if (Number(text) >= 1000) return compactNumber(size * 1000)
+    return `${text.replace(/\.0$/, '')}${suffix}`
   }
 }
 

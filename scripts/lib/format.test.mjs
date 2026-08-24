@@ -13,6 +13,15 @@ test('compactNumber abbreviates and drops trailing .0', () => {
   assert.equal(compactNumber(146_000_000), '146M')
   assert.equal(compactNumber(1_234_567_890), '1.2B')
 })
+test('compactNumber promotes when rounding fills the unit', () => {
+  // Without promotion these render as "1000M" and "1000K".
+  assert.equal(compactNumber(999_999_999), '1B')
+  assert.equal(compactNumber(999_999), '1M')
+  assert.equal(compactNumber(999_950), '1M')
+  assert.equal(compactNumber(1_022_490_694), '1B')
+  assert.equal(compactNumber(1_500_000_000), '1.5B')
+})
+
 test('compactNumber rejects junk rather than rendering it', () => {
   assert.throws(() => compactNumber('12'), TypeError)
   assert.throws(() => compactNumber(NaN), TypeError)
