@@ -96,4 +96,4 @@ A paper-trading simulator running several strategy configurations in parallel la
 
 ---
 
-<sub><a href="https://www.linkedin.com/in/nbstanki/">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:nbstanki@mtu.edu">nbstanki@mtu.edu</a></sub>
+<sub><a href="https://www.linkedin.com/in/nbstanki/">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:dexploit.dev@gmail.com">nbstanki@mtu.edu</a></sub>
