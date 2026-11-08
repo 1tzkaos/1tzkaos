@@ -29,7 +29,7 @@ Pre-parsed OHLCV candles, swap events, and price streams across Solana DEXs, ser
 <!-- STATS:START -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Dexploit live stats: candles stored 1.4B, trading pairs 7.4M, token mints 6.7M, dex protocols 10. Updated 2026-11-07" src="assets/stats-light.svg" width="100%">
+  <img alt="Dexploit live stats: candles stored 1.4B, trading pairs 7.4M, token mints 6.7M, dex protocols 10. Updated 2026-11-08" src="assets/stats-light.svg" width="100%">
 </picture>
 <!-- STATS:END -->
 
@@ -91,7 +91,7 @@ A paper-trading simulator running several strategy configurations in parallel la
 - opened an issue in [`DexploitV1/Dexploit-MCP`](https://github.com/DexploitV1/Dexploit-MCP)
 - opened an issue in [`DexploitV1/Dexploit-Examples`](https://github.com/DexploitV1/Dexploit-Examples)
 
-<sub>updated 2026-11-07</sub>
+<sub>updated 2026-11-08</sub>
 <!-- ACTIVITY:END -->
 
 ---
