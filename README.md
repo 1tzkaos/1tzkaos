@@ -29,7 +29,7 @@ Pre-parsed OHLCV candles, swap events, and price streams across Solana DEXs, ser
 <!-- STATS:START -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Dexploit live stats: candles stored 1.5B, trading pairs 8.2M, token mints 7.4M, dex protocols 10. Updated 2026-11-24" src="assets/stats-light.svg" width="100%">
+  <img alt="Dexploit live stats: candles stored 1.5B, trading pairs 8.3M, token mints 7.4M, dex protocols 10. Updated 2026-11-24" src="assets/stats-light.svg" width="100%">
 </picture>
 <!-- STATS:END -->
 
